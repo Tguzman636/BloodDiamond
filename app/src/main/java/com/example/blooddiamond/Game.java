@@ -67,6 +67,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         player.draw(canvas);
         enemy.draw(canvas);
+
     }
 
     public void drawUPS(Canvas canvas) {
