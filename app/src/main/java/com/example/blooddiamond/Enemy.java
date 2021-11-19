@@ -16,7 +16,7 @@ public class Enemy extends Circle {
         this.player = player;
     }
 
-    public void update(double posX, double posY) {
+    public void update() {
         double distanceToPlayerX = player.getPosX() - posX;
         double distanceToPlayerY = player.getPosY() - posY;
         double distanceToPlayer = GameObject.CalcDistance(this, player);

@@ -16,6 +16,7 @@ import android.view.SurfaceView;
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private Player player;
     private GameLoop gameLoop;
+    private Enemy enemy;
 
     public Game(Context context) {
         super(context);
@@ -28,6 +29,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         player = new Player(getContext(), 500, 500, 10);
 
+        enemy = new Enemy(getContext(), player, 500, 200, 10);
         setFocusable(true);
     }
 
@@ -64,6 +66,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         drawFPS(canvas);
 
         player.draw(canvas);
+        enemy.draw(canvas);
     }
 
     public void drawUPS(Canvas canvas) {
@@ -85,6 +88,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update() {
+        enemy.update();
     }
 
 }
