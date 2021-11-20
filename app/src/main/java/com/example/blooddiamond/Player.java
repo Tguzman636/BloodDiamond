@@ -18,4 +18,8 @@ public class Player extends Circle{
         this.posX = posX;
         this.posY = posY;
     }
+
+    public void pull() {
+        this.posX = posX+1;
+    }
 }

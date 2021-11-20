@@ -18,6 +18,19 @@ public abstract class Circle extends GameObject {
         paint.setColor(color);
     }
 
+    public static boolean isColliding(Circle enemy, Circle player) {
+        double distance = CalcDistance(enemy, player);
+        if (distance < enemy.getRadius()+player.getRadius()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private double getRadius() {
+        return radius;
+    }
+
     public void draw(Canvas canvas) {
         canvas.drawCircle((float) posX,(float) posY,(float) radius, paint);
     }
