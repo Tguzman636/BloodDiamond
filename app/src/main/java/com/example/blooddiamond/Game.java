@@ -40,12 +40,23 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public boolean onTouchEvent(MotionEvent event) {
         switch(event.getAction()) { //Temporary
             case MotionEvent.ACTION_DOWN:
-                player.update((double) event.getX(), (double) event.getY());
+                double x = event.getX();
+                double y = event.getY();
+                //if calcdistance = 0 -> remove enemy
+                Player tap= new Player(getContext(), x, y, 1);
+                Iterator<Enemy> enemyIterator = enemyList.iterator();
+                while (enemyIterator.hasNext()) {
+                    if (Circle.isColliding(enemyIterator.next(), tap)) {
+                        enemyIterator.remove();
+                    }
+                }
                 return true;
         }
 
         return super.onTouchEvent(event);
     }
+
+
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {

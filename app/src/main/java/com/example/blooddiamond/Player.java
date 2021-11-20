@@ -8,6 +8,8 @@ import androidx.core.content.ContextCompat;
 
 public class Player extends Circle{
 
+    private Sprite sprite;
+
     public Player(Context context, double posX, double posY, double radius) {
         super(context, ContextCompat.getColor(context, R.color.teal_200), posX, posY, radius);
         this.posX = posX;
@@ -18,6 +20,10 @@ public class Player extends Circle{
         this.posX = posX;
         this.posY = posY;
     }
+
+    //public void draw(Canvas canvas, GameDisplay gameDisplay) {
+    //    sprite.draw(canvas);
+    //}
 
     public void pull() {
         this.posX = posX+1;
