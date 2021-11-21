@@ -28,4 +28,12 @@ public class SpriteSheet {
     public Bitmap getBitmap() {
         return bitmap;
     }
+
+    public Sprite getGrassSprite() {
+        return getSpriteByIndex(1, 0);
+    }
+
+    public Sprite getDirtSprite() {
+        return getSpriteByIndex(1, 1);
+    }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 
 
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
+    private final Tilemap tilemap;
     private Player player;
     private GameLoop gameLoop;
     private Enemy enemy;
@@ -29,8 +30,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
+        SpriteSheet spriteSheet = new SpriteSheet(context);
 
         gameLoop = new GameLoop(this, surfaceHolder);
+
+        tilemap = new Tilemap(spriteSheet);
 
         player = new Player(getContext(), 500, 500, 30);
         setFocusable(true);
