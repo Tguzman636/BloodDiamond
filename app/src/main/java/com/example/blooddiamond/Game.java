@@ -115,7 +115,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         for (Enemy enemy : enemyList) {
             enemy.update();
         }
-
+        //If player.getX,  >= Screen Size => End Game
         Iterator<Enemy> enemyIterator = enemyList.iterator();
         while (enemyIterator.hasNext()) {
             if (Circle.isColliding(enemyIterator.next(), player)) {
