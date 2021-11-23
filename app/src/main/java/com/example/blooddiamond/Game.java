@@ -28,15 +28,15 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         super(context);
         getContext();
 
-        SurfaceHolder surfaceHolder = getHolder();
+        SurfaceHolder surfaceHolder = getHolder(); // allows you to draw
         surfaceHolder.addCallback(this);
         SpriteSheet spriteSheet = new SpriteSheet(context);
 
-        gameLoop = new GameLoop(this, surfaceHolder);
+        gameLoop = new GameLoop(this, surfaceHolder); //sets up frames
 
         tilemap = new Tilemap(spriteSheet);
 
-        player = new Player(getContext(), 500, 500, 30);
+        player = new Player(getContext(), 500, 500, 30); // diamond
         setFocusable(true);
     }
 
@@ -68,7 +68,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height)  {
 
     }
 
