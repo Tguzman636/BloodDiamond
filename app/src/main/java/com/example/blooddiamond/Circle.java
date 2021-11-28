@@ -3,6 +3,7 @@ package com.example.blooddiamond;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
@@ -12,6 +13,7 @@ public abstract class Circle extends GameObject {
 
     public Circle(Context context, int color, double posX, double posY, double radius) {
         super(posX, posY);
+        Log.d("Bug-Exterminator", "Circle.java - Circle()");
 
         this.radius = radius;
         paint = new Paint();
@@ -19,6 +21,7 @@ public abstract class Circle extends GameObject {
     }
 
     public static boolean isColliding(Circle enemy, Circle player) {
+        Log.d("Bug-Exterminator", "Circle.java - isColliding()");
         double distance = CalcDistance(enemy, player);
         if (distance < enemy.getRadius()+player.getRadius()) {
             return true;
@@ -28,10 +31,12 @@ public abstract class Circle extends GameObject {
     }
 
     private double getRadius() {
+        Log.d("Bug-Exterminator", "Circle.java - getRadius()");
         return radius;
     }
 
     public void draw(Canvas canvas) {
+        Log.d("Bug-Exterminator", "Circle.java - draw()");
         canvas.drawCircle((float) posX,(float) posY,(float) radius, paint);
     }
 }

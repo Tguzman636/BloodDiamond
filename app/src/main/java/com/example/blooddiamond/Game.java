@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -23,9 +26,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private GameLoop gameLoop;
     private Enemy enemy;
     private List<Enemy> enemyList = new ArrayList<Enemy>();
+    private GameDisplay gameDisplay;
 
     public Game(Context context) {
         super(context);
+        Log.d("Bug-Exterminator", "Game.java - Game()");
         getContext();
 
         SurfaceHolder surfaceHolder = getHolder();
@@ -33,15 +38,17 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         SpriteSheet spriteSheet = new SpriteSheet(context);
 
         gameLoop = new GameLoop(this, surfaceHolder);
-
-        tilemap = new Tilemap(spriteSheet);
-
         player = new Player(getContext(), 500, 500, 30);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        gameDisplay = new GameDisplay(displayMetrics.widthPixels, displayMetrics.heightPixels, player);
+        tilemap = new Tilemap(spriteSheet);
         setFocusable(true);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        Log.d("Bug-Exterminator", "Game.java - onTouchEvent()");
         switch(event.getAction()) { //Temporary
             case MotionEvent.ACTION_DOWN:
                 double x = event.getX();
@@ -64,24 +71,28 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        Log.d("Bug-Exterminator", "Game.java - surfaceCreated()");
         gameLoop.startLoop();
     }
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+        Log.d("Bug-Exterminator", "Game.java - surfaceChanged()");
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-
+        Log.d("Bug-Exterminator", "Game.java - surfaceDestroyed()");
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+        Log.d("Bug-Exterminator", "Game.java - draw()");
         drawUPS(canvas);
         drawFPS(canvas);
+
+        tilemap.draw(canvas, gameDisplay);
 
         player.draw(canvas);
         for (Enemy enemy : enemyList) {
@@ -90,6 +101,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void drawUPS(Canvas canvas) {
+        Log.d("Bug-Exterminator", "Game.java - drawUPS()");
         String averageUPS = Double.toString(gameLoop.getAverageUPS());
         Paint paint = new Paint();
         int color = ContextCompat.getColor(getContext(), R.color.magenta);
@@ -99,6 +111,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void drawFPS(Canvas canvas) {
+        Log.d("Bug-Exterminator", "Game.java - drawFPS()");
         String averageFPS = Double.toString(gameLoop.getAverageFPS());
         Paint paint = new Paint();
         int color = ContextCompat.getColor(getContext(), R.color.magenta);
@@ -108,6 +121,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update() {
+        Log.d("Bug-Exterminator", "Game.java - update()");
         if(Enemy.readyToSpawn()) {
             enemyList.add(new Enemy(getContext(), player));
         }

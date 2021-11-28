@@ -1,6 +1,8 @@
 package com.example.blooddiamond;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.example.blooddiamond.GameLoop;
 
 import androidx.core.content.ContextCompat;
@@ -15,11 +17,6 @@ public class Enemy extends Circle {
 
     private final Player player;
 
-    public Enemy(Context context, Player player, double posX, double posY, double radius) {
-        super(context, ContextCompat.getColor(context, R.color.white), posX, posY, radius);
-        this.player = player;
-    }
-
     public Enemy(Context context, Player player) {
         super(
                 context,
@@ -27,10 +24,12 @@ public class Enemy extends Circle {
                 Math.random()*1000,
                 Math.random()*1000,
                 30);
+        Log.d("Bug-Exterminator", "Enemy.java - Enemy()");
         this.player = player;
     }
 
     public static boolean readyToSpawn() {
+        Log.d("Bug-Exterminator", "Enemy.java - readyToSpawn()");
         if (updatesUntilNextSpawn <= 0 ) {
             updatesUntilNextSpawn += UPDATES_PER_SPAWN;
             return true;
@@ -41,6 +40,7 @@ public class Enemy extends Circle {
     }
 
     public void update() {
+        Log.d("Bug-Exterminator", "Enemy.java - update()");
         double distanceToPlayerX = player.getPosX() - posX;
         double distanceToPlayerY = player.getPosY() - posY;
         double distanceToPlayer = GameObject.CalcDistance(this, player);

@@ -1,6 +1,7 @@
 package com.example.blooddiamond;
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 
@@ -13,6 +14,7 @@ public class GameLoop extends Thread{ //Thread allows start() to work
     public static final double MAX_UPS = 30.0;
 
     public GameLoop(Game game, SurfaceHolder surfaceHolder) {
+        Log.d("Bug-Exterminator", "GameLoop.java - GameLoop()");
         this.game = game;
         this.surfaceHolder = surfaceHolder;
     }
@@ -26,12 +28,14 @@ public class GameLoop extends Thread{ //Thread allows start() to work
     }
 
     public void startLoop() {
+        Log.d("Bug-Exterminator", "GameLoop.java - startLoop()");
         isRunning = true;
         start();
     }
 
     @Override
     public void run() {
+        Log.d("Bug-Exterminator", "GameLoop.java - run()");
         super.run();
 
         int updateCount = 0;
@@ -41,7 +45,7 @@ public class GameLoop extends Thread{ //Thread allows start() to work
         long elapsedTime;
         long sleepTime;
 
-        Canvas canvas;
+        Canvas canvas = null;
         startTime = System.currentTimeMillis();
         while(isRunning) { // Game loop
             //Update/Render Game
@@ -56,6 +60,15 @@ public class GameLoop extends Thread{ //Thread allows start() to work
                 frameCount++;
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
+            } finally {
+                if(canvas != null) {
+                    try {
+                        surfaceHolder.unlockCanvasAndPost(canvas);
+                        frameCount++;
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             elapsedTime = System.currentTimeMillis() - startTime;

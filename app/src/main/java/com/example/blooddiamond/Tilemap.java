@@ -9,6 +9,7 @@ import static com.example.blooddiamond.MapLayout.TILE_WIDTH_PIXELS;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.util.Log;
 
 import java.util.Map;
 
@@ -20,12 +21,14 @@ public class Tilemap {
     private Bitmap mapBitmap;
 
     public Tilemap(SpriteSheet spriteSheet) {
+        Log.d("Bug-Exterminator", "Tilemap.java - Tilemap()");
         mapLayout = new MapLayout();
         this.spriteSheet = spriteSheet;
         initializeTilemap();
     }
 
     private void initializeTilemap() {
+        Log.d("Bug-Exterminator", "Tilemap.java - initializeTilemap()");
         int[][] layout = mapLayout.getLayout();
         tilemap = new Tile[NUM_ROWS][NUM_COL];
         for (int i = 0; i < NUM_ROWS; i++) {
@@ -57,11 +60,23 @@ public class Tilemap {
     }
 
     private Rect getRectByIndex(int i, int j) {
+        Log.d("Bug-Exterminator", "Tilemap.java - getRectByIndex()");
         return new Rect(
                 j*TILE_WIDTH_PIXELS,
                 i*TILE_HEIGHT_PIXELS,
                 (j+1)*TILE_WIDTH_PIXELS,
                 (i+1)*TILE_HEIGHT_PIXELS
         );
+    }
+
+    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+        Log.d("Bug-Exterminator", "Tilemap.java - draw()");
+        canvas.drawBitmap(
+                mapBitmap,
+                gameDisplay.getGameRect(),
+                gameDisplay.DISPLAY_RECT,
+                null
+        );
+        Log.d("Bug-Exterminator", "Tilemap.java - draw-post()");
     }
 }
