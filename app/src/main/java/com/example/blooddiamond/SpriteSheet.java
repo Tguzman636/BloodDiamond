@@ -18,6 +18,21 @@ public class SpriteSheet {
         bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.spritesheet1);
     }
 
+    public Bitmap getBitmap() {
+        Log.d("Bug-Exterminator", "SpriteSheet.java - getBitmap()");
+        return bitmap;
+    }
+
+    public Sprite getGrassSprite() {
+        Log.d("Bug-Exterminator", "SpriteSheet.java - getGrassSprite()");
+        return getSpriteByIndex(3, 0);
+    }
+
+    public Sprite getDirtSprite() {
+        Log.d("Bug-Exterminator", "SpriteSheet.java - getDirtSprite()");
+        return getSpriteByIndex(3, 3);
+    }
+
     private Sprite getSpriteByIndex(int Row, int Col) {
         Log.d("Bug-Exterminator", "SpriteSheet.java - getSpriteByIndex()");
         return new Sprite(this, new Rect(
@@ -26,20 +41,5 @@ public class SpriteSheet {
                 (Col+1)*SPRITE_WIDTH_PIXELS,
                 (Row+1)*SPRITE_HEIGHT_PIXELS
         ));
-    }
-
-    public Bitmap getBitmap() {
-        Log.d("Bug-Exterminator", "SpriteSheet.java - getBitmap()");
-        return bitmap;
-    }
-
-    public Sprite getGrassSprite() {
-        Log.d("Bug-Exterminator", "SpriteSheet.java - getGrassSprite()");
-        return getSpriteByIndex(1, 0);
-    }
-
-    public Sprite getDirtSprite() {
-        Log.d("Bug-Exterminator", "SpriteSheet.java - getDirtSprite()");
-        return getSpriteByIndex(1, 1);
     }
 }

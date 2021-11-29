@@ -59,13 +59,13 @@ public class Tilemap {
         System.out.println();
     }
 
-    private Rect getRectByIndex(int i, int j) {
+    private Rect getRectByIndex(int row, int col) {
         Log.d("Bug-Exterminator", "Tilemap.java - getRectByIndex()");
         return new Rect(
-                j*TILE_WIDTH_PIXELS,
-                i*TILE_HEIGHT_PIXELS,
-                (j+1)*TILE_WIDTH_PIXELS,
-                (i+1)*TILE_HEIGHT_PIXELS
+                row*TILE_WIDTH_PIXELS,
+                col*TILE_HEIGHT_PIXELS,
+                (row+1)*TILE_WIDTH_PIXELS,
+                (col+1)*TILE_HEIGHT_PIXELS
         );
     }
 
@@ -77,6 +77,5 @@ public class Tilemap {
                 gameDisplay.DISPLAY_RECT,
                 null
         );
-        Log.d("Bug-Exterminator", "Tilemap.java - draw-post()");
     }
 }

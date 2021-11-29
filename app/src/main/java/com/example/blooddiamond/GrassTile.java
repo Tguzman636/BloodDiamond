@@ -3,6 +3,7 @@ package com.example.blooddiamond;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.Log;
+import android.view.ViewDebug;
 
 public class GrassTile extends Tile {
     private final Sprite sprite;
