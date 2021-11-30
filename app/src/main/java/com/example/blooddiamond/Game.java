@@ -94,9 +94,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         tilemap.draw(canvas, gameDisplay);
 
-        player.draw(canvas);
+        player.draw(canvas, gameDisplay);
+
+
+
+
         for (Enemy enemy : enemyList) {
-            enemy.draw(canvas);
+            enemy.draw(canvas, gameDisplay);
         }
     }
 
@@ -136,6 +140,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 player.pull();
             }
         }
+        gameDisplay.update();
     }
+
 
 }

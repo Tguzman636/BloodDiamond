@@ -24,9 +24,9 @@ public class Player extends Circle{
         this.posY = posY;
     }
 
-    //public void draw(Canvas canvas, GameDisplay gameDisplay) {
-    //    sprite.draw(canvas);
-    //}
+    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+       super.draw(canvas, gameDisplay);
+    }
 
     public void pull() {
         Log.d("Bug-Exterminator", "Player.java - pull()");

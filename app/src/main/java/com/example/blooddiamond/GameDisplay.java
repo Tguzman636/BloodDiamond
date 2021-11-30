@@ -15,6 +15,7 @@ public class GameDisplay {
     private double gameCenterX;
     private double gameCenterY;
 
+
     public GameDisplay(int widthPixels, int heightPixels, GameObject centerObject) {
         Log.d("Bug-Exterminator", "GameDisplay.java - GameDisplay()");
         this.widthPixels = widthPixels;
@@ -46,5 +47,13 @@ public class GameDisplay {
                 (int) (gameCenterX + widthPixels/2),
                 (int) (gameCenterY + heightPixels/2)
         );
+    }
+
+    public double gameToDisplayCoordinatesX(double posX) {
+        return posX + gameToDisplayCoordinatesOffsetX;
+    }
+
+    public double gameToDisplayCoordinatesY(double posY) {
+        return posY + gameToDisplayCoordinatesOffsetY;
     }
 }

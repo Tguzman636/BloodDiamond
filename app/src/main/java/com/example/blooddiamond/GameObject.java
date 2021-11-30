@@ -15,7 +15,7 @@ public abstract class GameObject {
         this.posY = posY;
     }
 
-    public abstract void draw(Canvas canvas);
+    public abstract void draw(Canvas canvas, GameDisplay gameDisplay);
 
     public double getPosX() {
         Log.d("Bug-Exterminator", "GameObject.java - getPosX()");
