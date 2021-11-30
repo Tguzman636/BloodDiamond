@@ -61,11 +61,15 @@ public class Tilemap {
 
     private Rect getRectByIndex(int row, int col) {
         Log.d("Bug-Exterminator", "Tilemap.java - getRectByIndex()");
+        Log.d("Bug-ExterminatorDepth", "Tilemap - Col " + String.valueOf(col*TILE_WIDTH_PIXELS));
+        Log.d("Bug-ExterminatorDepth", "Tilemap - Row " + String.valueOf(row*TILE_HEIGHT_PIXELS));
+        Log.d("Bug-ExterminatorDepth", "Tilemap - Col+1 " + String.valueOf((col+1)*TILE_WIDTH_PIXELS));
+        Log.d("Bug-ExterminatorDepth", "Tilemap - Row+1 " + String.valueOf((row+1)*TILE_HEIGHT_PIXELS));
         return new Rect(
-                row*TILE_WIDTH_PIXELS,
-                col*TILE_HEIGHT_PIXELS,
-                (row+1)*TILE_WIDTH_PIXELS,
-                (col+1)*TILE_HEIGHT_PIXELS
+                col*TILE_WIDTH_PIXELS,
+                row*TILE_HEIGHT_PIXELS,
+                (col+1)*TILE_WIDTH_PIXELS,
+                (row+1)*TILE_HEIGHT_PIXELS
         );
     }
 
