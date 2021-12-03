@@ -9,13 +9,13 @@ public class DirtTile extends Tile {
 
     public DirtTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
         super(mapLocationRect);
-        Log.d("Bug-Exterminator", "DirtTile.java - DirtTile()");
+        //Log.d("Bug-Exterminator", "DirtTile.java - DirtTile()");
         sprite = spriteSheet.getDirtSprite();
     }
 
     @Override
     public void draw(Canvas canvas) {
-        Log.d("Bug-Exterminator", "DirtTile.java - draw()");
+        //Log.d("Bug-Exterminator", "DirtTile.java - draw()");
         sprite.draw(canvas, mapLocationRect.left, mapLocationRect.top);
     }
 }

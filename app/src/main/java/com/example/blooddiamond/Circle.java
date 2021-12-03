@@ -13,7 +13,7 @@ public abstract class Circle extends GameObject {
 
     public Circle(Context context, int color, double posX, double posY, double radius) {
         super(posX, posY);
-        Log.d("Bug-Exterminator", "Circle.java - Circle()");
+        //Log.d("Bug-Exterminator", "Circle.java - Circle()");
 
         this.radius = radius;
         paint = new Paint();
@@ -21,7 +21,7 @@ public abstract class Circle extends GameObject {
     }
 
     public static boolean isColliding(Circle enemy, Circle player) {
-        Log.d("Bug-Exterminator", "Circle.java - isColliding()");
+        //Log.d("Bug-Exterminator", "Circle.java - isColliding()");
         double distance = CalcDistance(enemy, player);
         if (distance < enemy.getRadius()+player.getRadius()) {
             return true;
@@ -31,13 +31,13 @@ public abstract class Circle extends GameObject {
     }
 
     private double getRadius() {
-        Log.d("Bug-Exterminator", "Circle.java - getRadius()");
+        //Log.d("Bug-Exterminator", "Circle.java - getRadius()");
         return radius;
     }
 
     public void draw(Canvas canvas, GameDisplay gameDisplay) {
 
-        Log.d("Bug-Exterminator", "Circle.java - draw()");
+        //Log.d("Bug-Exterminator", "Circle.java - draw()");
         canvas.drawCircle(
                 (float) gameDisplay.gameToDisplayCoordinatesX(posX),
                 (float) gameDisplay.gameToDisplayCoordinatesY(posY),

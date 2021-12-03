@@ -9,7 +9,7 @@ abstract class Tile {
     protected final Rect mapLocationRect;
 
     public Tile(Rect mapLocationRect) {
-        Log.d("Bug-Exterminator", "Tile.java - Tile()");
+        //Log.d("Bug-Exterminator", "Tile.java - Tile()");
         this.mapLocationRect = mapLocationRect;
     }
 
@@ -19,7 +19,7 @@ abstract class Tile {
     }
 
     public static Tile getTile(int TileID, SpriteSheet spriteSheet, Rect mapLocationRect) {
-        Log.d("Bug-Exterminator", "Tile.java - getTile()");
+        //Log.d("Bug-Exterminator", "Tile.java - getTile()");
         switch(TileType.values()[TileID]) {
             case GRASS:
                 return new GrassTile(spriteSheet, mapLocationRect);

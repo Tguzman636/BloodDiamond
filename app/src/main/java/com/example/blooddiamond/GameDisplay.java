@@ -17,7 +17,7 @@ public class GameDisplay {
 
 
     public GameDisplay(int widthPixels, int heightPixels, GameObject centerObject) {
-        Log.d("Bug-Exterminator", "GameDisplay.java - GameDisplay()");
+        //Log.d("Bug-Exterminator", "GameDisplay.java - GameDisplay()");
         this.widthPixels = widthPixels;
         this.heightPixels = heightPixels;
         DISPLAY_RECT = new Rect(0, 0, widthPixels, heightPixels);
@@ -31,7 +31,7 @@ public class GameDisplay {
     }
 
     public void update() {
-        Log.d("Bug-Exterminator", "GameDisplay.java - update()");
+        //Log.d("Bug-Exterminator", "GameDisplay.java - update()");
         gameCenterX = centerObject.getPosX();
         gameCenterY = centerObject.getPosY();
 
@@ -47,8 +47,16 @@ public class GameDisplay {
         return gameToDisplayCoordinatesOffsetY;
     }
 
+    public double gameCenterX() {
+        return gameCenterX;
+    }
+
+    public double gameCenterY() {
+        return gameCenterY;
+    }
+
     public Rect getGameRect() {
-        Log.d("Bug-Exterminator", "GameDisplay.java - getGameRect()");
+        //Log.d("Bug-Exterminator", "GameDisplay.java - getGameRect()");
         return new Rect(
                 (int) (gameCenterX - widthPixels/2),
                 (int) (gameCenterY - heightPixels/2),

@@ -10,13 +10,13 @@ public class GrassTile extends Tile {
 
     public GrassTile(SpriteSheet spriteSheet, Rect mapLocationRect) {
         super(mapLocationRect);
-        Log.d("Bug-Exterminator", "GrassTile.java - GrassTile()");
+        //Log.d("Bug-Exterminator", "GrassTile.java - GrassTile()");
         sprite = spriteSheet.getGrassSprite();
     }
 
     @Override
     public void draw(Canvas canvas) {
-        Log.d("Bug-Exterminator", "GrassTile.java - draw()");
+        //Log.d("Bug-Exterminator", "GrassTile.java - draw()");
         sprite.draw(canvas, mapLocationRect.left, mapLocationRect.top);
     }
 }

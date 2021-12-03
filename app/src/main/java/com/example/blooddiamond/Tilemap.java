@@ -21,14 +21,14 @@ public class Tilemap {
     private Bitmap mapBitmap;
 
     public Tilemap(SpriteSheet spriteSheet) {
-        Log.d("Bug-Exterminator", "Tilemap.java - Tilemap()");
+        //Log.d("Bug-Exterminator", "Tilemap.java - Tilemap()");
         mapLayout = new MapLayout();
         this.spriteSheet = spriteSheet;
         initializeTilemap();
     }
 
     private void initializeTilemap() {
-        Log.d("Bug-Exterminator", "Tilemap.java - initializeTilemap()");
+        //Log.d("Bug-Exterminator", "Tilemap.java - initializeTilemap()");
         int[][] layout = mapLayout.getLayout();
         tilemap = new Tile[NUM_ROWS][NUM_COL];
         for (int i = 0; i < NUM_ROWS; i++) {
@@ -60,11 +60,11 @@ public class Tilemap {
     }
 
     private Rect getRectByIndex(int row, int col) {
-        Log.d("Bug-Exterminator", "Tilemap.java - getRectByIndex()");
-        Log.d("Bug-ExterminatorDepth", "Tilemap - Col " + String.valueOf(col*TILE_WIDTH_PIXELS));
-        Log.d("Bug-ExterminatorDepth", "Tilemap - Row " + String.valueOf(row*TILE_HEIGHT_PIXELS));
-        Log.d("Bug-ExterminatorDepth", "Tilemap - Col+1 " + String.valueOf((col+1)*TILE_WIDTH_PIXELS));
-        Log.d("Bug-ExterminatorDepth", "Tilemap - Row+1 " + String.valueOf((row+1)*TILE_HEIGHT_PIXELS));
+        //Log.d("Bug-Exterminator", "Tilemap.java - getRectByIndex()");
+        //Log.d("Bug-ExterminatorDepth", "Tilemap - Col " + String.valueOf(col*TILE_WIDTH_PIXELS));
+        //Log.d("Bug-ExterminatorDepth", "Tilemap - Row " + String.valueOf(row*TILE_HEIGHT_PIXELS));
+        //Log.d("Bug-ExterminatorDepth", "Tilemap - Col+1 " + String.valueOf((col+1)*TILE_WIDTH_PIXELS));
+        //Log.d("Bug-ExterminatorDepth", "Tilemap - Row+1 " + String.valueOf((row+1)*TILE_HEIGHT_PIXELS));
         return new Rect(
                 col*TILE_WIDTH_PIXELS,
                 row*TILE_HEIGHT_PIXELS,
@@ -74,7 +74,7 @@ public class Tilemap {
     }
 
     public void draw(Canvas canvas, GameDisplay gameDisplay) {
-        Log.d("Bug-Exterminator", "Tilemap.java - draw()");
+        //Log.d("Bug-Exterminator", "Tilemap.java - draw()");
         canvas.drawBitmap(
                 mapBitmap,
                 gameDisplay.getGameRect(),

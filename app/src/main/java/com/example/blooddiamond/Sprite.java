@@ -9,13 +9,13 @@ public class Sprite {
     private final Rect rect;
 
     public Sprite(SpriteSheet spriteSheet, Rect rect) {
-        Log.d("Bug-Exterminator", "Sprite.java - Sprite()");
+        //Log.d("Bug-Exterminator", "Sprite.java - Sprite()");
         this.spriteSheet = spriteSheet;
         this.rect = rect;
     }
 
     public void draw(Canvas canvas, int x, int y) {
-        Log.d("Bug-Exterminator", "Sprite.java - draw()");
+        //Log.d("Bug-Exterminator", "Sprite.java - draw()");
         canvas.drawBitmap(
                 spriteSheet.getBitmap(),
                 rect,
@@ -25,12 +25,12 @@ public class Sprite {
     }
 
     public int getWidth() {
-        Log.d("Bug-Exterminator", "Sprite.java - getWidth()");
+        //Log.d("Bug-Exterminator", "Sprite.java - getWidth()");
         return rect.width();
     }
 
     public int getHeight() {
-        Log.d("Bug-Exterminator", "Sprite.java - getHeight()");
+        //Log.d("Bug-Exterminator", "Sprite.java - getHeight()");
         return rect.height();
     }
 

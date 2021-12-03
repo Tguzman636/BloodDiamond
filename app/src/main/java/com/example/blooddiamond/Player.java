@@ -13,13 +13,13 @@ public class Player extends Circle{
 
     public Player(Context context, double posX, double posY, double radius) {
         super(context, ContextCompat.getColor(context, R.color.teal_200), posX, posY, radius);
-        Log.d("Bug-Exterminator", "Player.java - Player()");
+        //Log.d("Bug-Exterminator", "Player.java - Player()");
         this.posX = posX;
         this.posY = posY;
     }
 
     public void update(double posX, double posY) {
-        Log.d("Bug-Exterminator", "Player.java - update()");
+        //Log.d("Bug-Exterminator", "Player.java - update()");
         this.posX = posX;
         this.posY = posY;
     }
@@ -29,11 +29,12 @@ public class Player extends Circle{
     }
 
     public void pull() {
-        Log.d("Bug-Exterminator", "Player.java - pull()");
+        //Log.d("Bug-Exterminator", "Player.java - pull()");
         this.posX = posX+1;
     }
 
     public double getX() {
         return posX;
     }
+
 }

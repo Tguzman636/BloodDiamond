@@ -11,16 +11,16 @@ public class MapLayout {
     private int[][] layout;
 
     public MapLayout() {
-        Log.d("Bug-Exterminator", "MapLayout.java - MapLayout()");
+        //Log.d("Bug-Exterminator", "MapLayout.java - MapLayout()");
         initializeLayout();
     }
 
     public int[][] getLayout() {
-        Log.d("Bug-Exterminator", "MapLayout.java - getLayout()");
+        //Log.d("Bug-Exterminator", "MapLayout.java - getLayout()");
         return layout;
     }
     private void initializeLayout() { // Map is transpose
-        Log.d("Bug-Exterminator", "MapLayout.java - initializeLayout()");
+        //Log.d("Bug-Exterminator", "MapLayout.java - initializeLayout()");
         layout = new int[][] {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},

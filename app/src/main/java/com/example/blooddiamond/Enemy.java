@@ -8,39 +8,46 @@ import com.example.blooddiamond.GameLoop;
 import androidx.core.content.ContextCompat;
 
 public class Enemy extends Circle {
-    public static final double SPEED_PIXELS_PER_SECOND = 100.0;
+    public static final double SPEED_PIXELS_PER_SECOND = 80.0;
     private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / GameLoop.MAX_UPS;
     private static final double SPAWNS_PER_MINUTE = 20;
     private static double SPAWNS_PER_SECOND = SPAWNS_PER_MINUTE/60.0;
     private static final double UPDATES_PER_SPAWN = GameLoop.MAX_UPS/SPAWNS_PER_SECOND;
     private static double updatesUntilNextSpawn = UPDATES_PER_SPAWN;
+    private static double wave;
 
     private final Player player;
 
-    public Enemy(Context context, Player player) {
+    public Enemy(Context context, Player player, double getDisplayOffsetX, double getDisplayOffsetY) {
         super(
                 context,
                 ContextCompat.getColor(context, R.color.white),
-                Math.random()*1000,
-                Math.random()*1000,
+                Math.random()*2000-1000+getDisplayOffsetX,
+                Math.random()*2000-1000+getDisplayOffsetY,
                 30);
-        Log.d("Bug-Exterminator", "Enemy.java - Enemy()");
+        //Log.d("Bug-Exterminator", "Enemy.java - Enemy()");
         this.player = player;
     }
 
     public static boolean readyToSpawn() {
-        Log.d("Bug-Exterminator", "Enemy.java - readyToSpawn()");
+        //Log.d("Bug-Exterminator", "Enemy.java - readyToSpawn()");
         if (updatesUntilNextSpawn <= 0 ) {
             updatesUntilNextSpawn += UPDATES_PER_SPAWN;
             return true;
         } else {
             updatesUntilNextSpawn --;
+            updatesUntilNextSpawn = updatesUntilNextSpawn - wave;
             return false;
         }
     }
 
+    public static void WaveUp() {
+        //Log.d("Bug-Exterminator", "Enemy.java - WaveUp()");
+        wave = wave + 0.5;
+    }
+
     public void update() {
-        Log.d("Bug-Exterminator", "Enemy.java - update()");
+        //Log.d("Bug-Exterminator", "Enemy.java - update()");
         double distanceToPlayerX = player.getPosX() - posX;
         double distanceToPlayerY = player.getPosY() - posY;
         double distanceToPlayer = GameObject.CalcDistance(this, player);

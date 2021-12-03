@@ -14,7 +14,7 @@ public class GameLoop extends Thread{ //Thread allows start() to work
     public static final double MAX_UPS = 30.0;
 
     public GameLoop(Game game, SurfaceHolder surfaceHolder) {
-        Log.d("Bug-Exterminator", "GameLoop.java - GameLoop()");
+        //Log.d("Bug-Exterminator", "GameLoop.java - GameLoop()");
         this.game = game;
         this.surfaceHolder = surfaceHolder;
     }
@@ -28,14 +28,14 @@ public class GameLoop extends Thread{ //Thread allows start() to work
     }
 
     public void startLoop() {
-        Log.d("Bug-Exterminator", "GameLoop.java - startLoop()");
+        //Log.d("Bug-Exterminator", "GameLoop.java - startLoop()");
         isRunning = true;
         start();
     }
 
     @Override
     public void run() {
-        Log.d("Bug-Exterminator", "GameLoop.java - run()");
+        //Log.d("Bug-Exterminator", "GameLoop.java - run()");
         super.run();
 
         int updateCount = 0;
@@ -78,6 +78,7 @@ public class GameLoop extends Thread{ //Thread allows start() to work
                 updateCount = 0;
                 frameCount = 0;
                 startTime = System.currentTimeMillis();
+                Enemy.WaveUp();
             }
 
         }
