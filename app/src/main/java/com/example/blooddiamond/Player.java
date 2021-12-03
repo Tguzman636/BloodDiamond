@@ -11,21 +11,19 @@ public class Player extends Circle{
 
     private Sprite sprite;
 
-    public Player(Context context, double posX, double posY, double radius) {
-        super(context, ContextCompat.getColor(context, R.color.teal_200), posX, posY, radius);
+    public Player(Context context, double posX, double posY, double radius, Sprite sprite) {
+        super(context, ContextCompat.getColor(context, R.color.teal_200), posX, posY, radius, sprite);
         //Log.d("Bug-Exterminator", "Player.java - Player()");
         this.posX = posX;
         this.posY = posY;
-    }
-
-    public void update(double posX, double posY) {
-        //Log.d("Bug-Exterminator", "Player.java - update()");
-        this.posX = posX;
-        this.posY = posY;
+        this.sprite = sprite;
     }
 
     public void draw(Canvas canvas, GameDisplay gameDisplay) {
-       super.draw(canvas, gameDisplay);
+       sprite.draw(canvas,
+               (int) gameDisplay.gameToDisplayCoordinatesX(getX())-sprite.getWidth()/2,
+               (int) gameDisplay.gameToDisplayCoordinatesY(getY()-sprite.getHeight()/2)
+       );
     }
 
     public void pull() {
@@ -35,6 +33,9 @@ public class Player extends Circle{
 
     public double getX() {
         return posX;
+    }
+    public double getY() {
+        return posY;
     }
 
 }

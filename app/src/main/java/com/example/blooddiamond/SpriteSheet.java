@@ -19,6 +19,24 @@ public class SpriteSheet {
         bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.spritesheet1, bitmapOptions);
     }
 
+    public Sprite getEnemySprite() {
+        return new Sprite(this, new Rect(0,0,64,64));
+    }
+
+    public Sprite getPlayerSprite() {
+        int Row = 0;
+        int Col = 2;
+        return new Sprite(this, new Rect(
+                Col*SPRITE_WIDTH_PIXELS,
+                Row*SPRITE_HEIGHT_PIXELS,
+                (Col+2)*SPRITE_WIDTH_PIXELS,
+                (Row+2)*SPRITE_HEIGHT_PIXELS
+        ));
+    }
+
+    public Sprite getTapSprite() {
+        return new Sprite(this, new Rect(0,0,1,1));
+    }
     public Bitmap getBitmap() {
         //Log.d("Bug-Exterminator", "SpriteSheet.java - getBitmap()");
         return bitmap;

@@ -29,6 +29,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private List<Enemy> enemyList = new ArrayList<Enemy>();
     private GameDisplay gameDisplay;
     private GameOver gameOver;
+    private SpriteSheet spriteSheet = new SpriteSheet(getContext());
 
     public Game(Context context) {
         super(context);
@@ -37,13 +38,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
-        SpriteSheet spriteSheet = new SpriteSheet(context);
 
         gameLoop = new GameLoop(this, surfaceHolder);
 
         gameOver = new GameOver(context);
+        player = new Player(getContext(), 1500, 500, 40, spriteSheet.getPlayerSprite());
 
-        player = new Player(getContext(), 1500, 500, 40);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         gameDisplay = new GameDisplay(displayMetrics.widthPixels, displayMetrics.heightPixels, player);
@@ -63,7 +63,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 double y = event.getY()-YOffset;
                 //Log.d("Bug-ExterminatorDepth", "X:"+ String.valueOf(x));
                 //Log.d("Bug-ExterminatorDepth", "X:"+ String.valueOf(y));
-                Player tap= new Player(getContext(), x, y, 1);
+                Player tap= new Player(getContext(), x, y, 1, spriteSheet.getTapSprite());
                 Iterator<Enemy> enemyIterator = enemyList.iterator();
                 while (enemyIterator.hasNext()) {
                     if (Circle.isColliding(enemyIterator.next(), tap)) {
@@ -143,7 +143,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         }
 
         if(Enemy.readyToSpawn()) {
-            enemyList.add(new Enemy(getContext(), player, gameDisplay.gameCenterX(), gameDisplay.gameCenterY()));
+            enemyList.add(new Enemy(getContext(), player, gameDisplay.gameCenterX(), gameDisplay.gameCenterY(), spriteSheet.getEnemySprite()));
         }
 
         for (Enemy enemy : enemyList) {

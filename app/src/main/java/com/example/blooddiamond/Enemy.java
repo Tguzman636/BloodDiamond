@@ -17,16 +17,20 @@ public class Enemy extends Circle {
     private static double wave;
 
     private final Player player;
+    private Sprite sprite;
 
-    public Enemy(Context context, Player player, double getDisplayOffsetX, double getDisplayOffsetY) {
+    public Enemy(Context context, Player player, double getDisplayOffsetX, double getDisplayOffsetY, Sprite sprite) {
         super(
                 context,
                 ContextCompat.getColor(context, R.color.white),
                 Math.random()*2000-1000+getDisplayOffsetX,
                 Math.random()*2000-1000+getDisplayOffsetY,
-                30);
+                30,
+                sprite
+        );
         //Log.d("Bug-Exterminator", "Enemy.java - Enemy()");
         this.player = player;
+        this.sprite = sprite;
     }
 
     public static boolean readyToSpawn() {
@@ -43,7 +47,7 @@ public class Enemy extends Circle {
 
     public static void WaveUp() {
         //Log.d("Bug-Exterminator", "Enemy.java - WaveUp()");
-        wave = wave + 0.5;
+        wave = wave + 0.169;
     }
 
     public void update() {
@@ -64,5 +68,9 @@ public class Enemy extends Circle {
 
         posX += VeloX;
         posY += VeloY;
+    }
+
+    public Sprite getSprite() {
+        return this.sprite;
     }
 }
