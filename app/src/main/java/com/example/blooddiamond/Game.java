@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.ViewDebug;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,6 +28,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private Enemy enemy;
     private List<Enemy> enemyList = new ArrayList<Enemy>();
     private GameDisplay gameDisplay;
+    private GameOver gameOver;
 
     public Game(Context context) {
         super(context);
@@ -38,6 +40,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         SpriteSheet spriteSheet = new SpriteSheet(context);
 
         gameLoop = new GameLoop(this, surfaceHolder);
+
+        gameOver = new GameOver(context);
+
         player = new Player(getContext(), 1500, 500, 30);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -49,11 +54,15 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.d("Bug-Exterminator", "Game.java - onTouchEvent()");
-        switch(event.getAction()) { //Temporary
+        switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                double x = event.getX();
-                double y = event.getY();
-                //if calcdistance = 0 -> remove enemy
+                Log.d("Bug-Exterminator", "Game.java - MotionEvent");
+                double XOffset = gameDisplay.getDisplayOffsetX();
+                double YOffset = gameDisplay.getDisplayOffsetY();
+                double x = event.getX()-XOffset;
+                double y = event.getY()-YOffset;
+                Log.d("Bug-ExterminatorDepth", "X:"+ String.valueOf(x));
+                Log.d("Bug-ExterminatorDepth", "X:"+ String.valueOf(y));
                 Player tap= new Player(getContext(), x, y, 1);
                 Iterator<Enemy> enemyIterator = enemyList.iterator();
                 while (enemyIterator.hasNext()) {
@@ -96,7 +105,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         player.draw(canvas, gameDisplay);
 
-
+        if(player.getX() >= 3840) {
+            gameOver.draw(canvas);
+        }
 
 
         for (Enemy enemy : enemyList) {
@@ -126,6 +137,11 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         Log.d("Bug-Exterminator", "Game.java - update()");
+
+        if(player.getX() >= 3840) {
+            return;
+        }
+
         if(Enemy.readyToSpawn()) {
             enemyList.add(new Enemy(getContext(), player));
         }
@@ -133,7 +149,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         for (Enemy enemy : enemyList) {
             enemy.update();
         }
-        //If player.getX,  >= Screen Size => End Game
+
         Iterator<Enemy> enemyIterator = enemyList.iterator();
         while (enemyIterator.hasNext()) {
             if (Circle.isColliding(enemyIterator.next(), player)) {

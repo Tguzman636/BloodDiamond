@@ -39,6 +39,14 @@ public class GameDisplay {
         gameToDisplayCoordinatesOffsetY = displayCenterY - gameCenterY;
     }
 
+    public double getDisplayOffsetX() {
+        return gameToDisplayCoordinatesOffsetX;
+    }
+
+    public double getDisplayOffsetY() {
+        return gameToDisplayCoordinatesOffsetY;
+    }
+
     public Rect getGameRect() {
         Log.d("Bug-Exterminator", "GameDisplay.java - getGameRect()");
         return new Rect(

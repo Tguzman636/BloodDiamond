@@ -32,4 +32,8 @@ public class Player extends Circle{
         Log.d("Bug-Exterminator", "Player.java - pull()");
         this.posX = posX+1;
     }
+
+    public double getX() {
+        return posX;
+    }
 }
