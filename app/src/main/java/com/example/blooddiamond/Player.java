@@ -28,7 +28,11 @@ public class Player extends Circle{
 
     public void pull() {
         //Log.d("Bug-Exterminator", "Player.java - pull()");
-        this.posX = posX+1;
+        if (posX > 1700 && posY < 3000) {
+            this.posY = posY+1;
+        } else {
+            this.posX = posX + 1;
+        }
     }
 
     public double getX() {

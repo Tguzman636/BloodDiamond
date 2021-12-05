@@ -47,7 +47,7 @@ public class Enemy extends Circle {
 
     public static void WaveUp() {
         //Log.d("Bug-Exterminator", "Enemy.java - WaveUp()");
-        wave = wave + 0.169;
+        wave += 0.1;
     }
 
     public void update() {

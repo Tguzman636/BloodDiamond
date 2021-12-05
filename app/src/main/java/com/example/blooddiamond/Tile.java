@@ -15,7 +15,15 @@ abstract class Tile {
 
     public enum TileType {
         GRASS,
-        DIRT
+        DIRT,
+        GRASSUP,
+        GRASSDOWN,
+        GRASSRIGHT,
+        GRASSLEFT,
+        GRASSINNER,
+        GRASSINNERINV,
+        GRASSOUTTER,
+        GRASSOUTTERINV
     }
 
     public static Tile getTile(int TileID, SpriteSheet spriteSheet, Rect mapLocationRect) {
@@ -25,6 +33,22 @@ abstract class Tile {
                 return new GrassTile(spriteSheet, mapLocationRect);
             case DIRT:
                 return new DirtTile(spriteSheet, mapLocationRect);
+            case GRASSUP:
+                return new GrassUPTile(spriteSheet, mapLocationRect);
+            case GRASSDOWN:
+                return new GrassDOWNTile(spriteSheet, mapLocationRect);
+            case GRASSRIGHT:
+                return new GrassRIGHTTile(spriteSheet, mapLocationRect);
+            case GRASSLEFT:
+                return new GrassLEFTTile(spriteSheet, mapLocationRect);
+            case GRASSINNER:
+                return new GrassINNERTile(spriteSheet, mapLocationRect);
+            case GRASSINNERINV:
+                return new GrassINNERINVTile(spriteSheet, mapLocationRect);
+            case GRASSOUTTER:
+                return new GrassOUTTERTile(spriteSheet, mapLocationRect);
+            case GRASSOUTTERINV:
+                return new GrassOUTTERINVTile(spriteSheet, mapLocationRect);
             default:
                 return null;
         }

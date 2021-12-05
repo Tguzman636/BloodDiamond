@@ -3,7 +3,10 @@ package com.example.blooddiamond;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ViewDebug;
 
@@ -37,19 +40,50 @@ public class SpriteSheet {
     public Sprite getTapSprite() {
         return new Sprite(this, new Rect(0,0,1,1));
     }
+
     public Bitmap getBitmap() {
         //Log.d("Bug-Exterminator", "SpriteSheet.java - getBitmap()");
         return bitmap;
     }
 
     public Sprite getGrassSprite() {
-        //Log.d("Bug-Exterminator", "SpriteSheet.java - getGrassSprite()");
         return getSpriteByIndex(1, 0);
     }
 
     public Sprite getDirtSprite() {
-        //Log.d("Bug-Exterminator", "SpriteSheet.java - getDirtSprite()");
         return getSpriteByIndex(1, 1);
+    }
+
+    public Sprite getGrassUPSprite() {
+        return getSpriteByIndex(2, 0);
+    }
+
+    public Sprite getGrassDOWNSprite() {
+        return getSpriteByIndex(2, 1);
+    }
+
+    public Sprite getGrassRIGHTSprite() {
+        return getSpriteByIndex(3, 0);
+    }
+
+    public Sprite getGrassLEFTSprite() {
+        return getSpriteByIndex(3, 1);
+    }
+
+    public Sprite getGrassINNERSprite() {
+        return getSpriteByIndex(4, 0);
+    }
+
+    public Sprite getGrassINNERINVSprite() {
+        return getSpriteByIndex(4, 1);
+    }
+
+    public Sprite getGrassOUTTERSprite() {
+        return getSpriteByIndex(4, 2);
+    }
+
+    public Sprite getGrassOUTTERINVSprite() {
+        return getSpriteByIndex(4, 3);
     }
 
     private Sprite getSpriteByIndex(int Row, int Col) {

@@ -30,19 +30,20 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private GameDisplay gameDisplay;
     private GameOver gameOver;
     private SpriteSheet spriteSheet = new SpriteSheet(getContext());
+    private int Counter;
 
     public Game(Context context) {
         super(context);
         //Log.d("Bug-Exterminator", "Game.java - Game()");
         getContext();
-
+        Counter = 0;
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
 
         gameLoop = new GameLoop(this, surfaceHolder);
 
         gameOver = new GameOver(context);
-        player = new Player(getContext(), 1500, 500, 40, spriteSheet.getPlayerSprite());
+        player = new Player(getContext(), 1000, 1920, 40, spriteSheet.getPlayerSprite());
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -67,6 +68,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 Iterator<Enemy> enemyIterator = enemyList.iterator();
                 while (enemyIterator.hasNext()) {
                     if (Circle.isColliding(enemyIterator.next(), tap)) {
+                        Counter++;
                         enemyIterator.remove();
                     }
                 }
@@ -98,10 +100,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         //Log.d("Bug-Exterminator", "Game.java - draw()");
-        drawUPS(canvas);
-        drawFPS(canvas);
 
         tilemap.draw(canvas, gameDisplay);
+
+        UpdateCounter(canvas);
 
         player.draw(canvas, gameDisplay);
 
@@ -109,30 +111,20 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             gameOver.draw(canvas);
         }
 
-
         for (Enemy enemy : enemyList) {
             enemy.draw(canvas, gameDisplay);
         }
     }
 
-    public void drawUPS(Canvas canvas) {
-        //Log.d("Bug-Exterminator", "Game.java - drawUPS()");
-        String averageUPS = Double.toString(gameLoop.getAverageUPS());
-        Paint paint = new Paint();
-        int color = ContextCompat.getColor(getContext(), R.color.magenta);
-        paint.setColor(color);
-        paint.setTextSize(50);
-        canvas.drawText("UPS" + averageUPS, 100, 100, paint);
-    }
-
-    public void drawFPS(Canvas canvas) {
-        //Log.d("Bug-Exterminator", "Game.java - drawFPS()");
-        String averageFPS = Double.toString(gameLoop.getAverageFPS());
-        Paint paint = new Paint();
-        int color = ContextCompat.getColor(getContext(), R.color.magenta);
-        paint.setColor(color);
-        paint.setTextSize(50);
-        canvas.drawText("FPS" + averageFPS, 100, 200, paint);
+    private void UpdateCounter(Canvas canvas) {
+            float x = 900;
+            float y = 350;
+            Paint paint = new Paint();
+            int color = ContextCompat.getColor(getContext(), R.color.red);
+            paint.setColor(color);
+            float textSize = 150;
+            paint.setTextSize(textSize);
+            canvas.drawText(String.valueOf(Counter),x,y,paint);
     }
 
     public void update() {
@@ -143,7 +135,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         }
 
         if(Enemy.readyToSpawn()) {
-            enemyList.add(new Enemy(getContext(), player, gameDisplay.gameCenterX(), gameDisplay.gameCenterY(), spriteSheet.getEnemySprite()));
+            if (enemyList.size() < 30) {
+                enemyList.add(new Enemy(getContext(), player, gameDisplay.gameCenterX(), gameDisplay.gameCenterY(), spriteSheet.getEnemySprite()));
+            }
         }
 
         for (Enemy enemy : enemyList) {

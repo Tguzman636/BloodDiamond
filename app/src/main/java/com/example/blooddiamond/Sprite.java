@@ -16,11 +16,12 @@ public class Sprite {
     public void draw(Canvas canvas, int x, int y) {
         //Log.d("Bug-Exterminator", "Sprite.java - draw()");
         canvas.drawBitmap(
-                spriteSheet.getBitmap(),
-                rect,
-                new Rect(x,y,x+getWidth(),y+getHeight()),
-                null
+            spriteSheet.getBitmap(),
+            rect,
+            new Rect(x, y, x + getWidth(), y + getHeight()),
+            null
         );
+
     }
 
     public int getWidth() {
