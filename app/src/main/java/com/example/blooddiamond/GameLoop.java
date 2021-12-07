@@ -10,6 +10,7 @@ public class GameLoop extends Thread{ //Thread allows start() to work
     private SurfaceHolder surfaceHolder;
     private Game game;
     public static final double MAX_UPS = 30.0;
+    int trigger;
 
     public GameLoop(Game game, SurfaceHolder surfaceHolder) {
         //Log.d("Bug-Exterminator", "GameLoop.java - GameLoop()");
@@ -20,6 +21,7 @@ public class GameLoop extends Thread{ //Thread allows start() to work
     public void startLoop() {
         //Log.d("Bug-Exterminator", "GameLoop.java - startLoop()");
         isRunning = true;
+        trigger = 1;
         start();
     }
 
@@ -38,8 +40,10 @@ public class GameLoop extends Thread{ //Thread allows start() to work
             try {
                 canvas = surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
-                    game.update();
-                    game.draw(canvas);
+                    if (trigger == 1) {
+                        game.update();
+                        game.draw(canvas);
+                    }
                 };
                 surfaceHolder.unlockCanvasAndPost(canvas);
             } catch (IllegalArgumentException e) {
@@ -61,5 +65,9 @@ public class GameLoop extends Thread{ //Thread allows start() to work
             }
 
         }
+    }
+
+    public void removetrigger(int i) {
+        this.trigger = i;
     }
 }

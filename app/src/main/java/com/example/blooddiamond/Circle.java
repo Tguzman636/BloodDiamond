@@ -3,6 +3,7 @@ package com.example.blooddiamond;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.Log;
 
 import androidx.core.content.ContextCompat;
@@ -32,6 +33,15 @@ public abstract class Circle extends GameObject {
         }
     }
 
+    public static boolean isTapColliding(Circle enemy, Rect tap) {
+        double distance = CalcTapDistance(enemy, tap);
+        if (distance < enemy.getRadius()+1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private double getRadius() {
         //Log.d("Bug-Exterminator", "Circle.java - getRadius()");
         return radius;
@@ -39,21 +49,8 @@ public abstract class Circle extends GameObject {
 
     public void draw(Canvas canvas, GameDisplay gameDisplay) {
         sprite.draw(canvas,
-                (int) gameDisplay.gameToDisplayCoordinatesX(posX-sprite.getWidth()/2),
-                (int) gameDisplay.gameToDisplayCoordinatesY(posY-sprite.getHeight()/2)
+                (int) gameDisplay.gameToDisplayCoordinatesX(posX - sprite.getWidth() / 2),
+                (int) gameDisplay.gameToDisplayCoordinatesY(posY - sprite.getHeight() / 2)
         );
-        //Log.d("Bug-Exterminator", "Circle.java - draw()");
-//        canvas.drawCircle(
-//                (float) gameDisplay.gameToDisplayCoordinatesX(posX),
-//                (float) gameDisplay.gameToDisplayCoordinatesY(posY),
-//                (float) radius,
-//                paint);
     }
-
-//    public void draw(Canvas canvas, GameDisplay gameDisplay) {
-//        sprite.draw(canvas,
-//                (int) gameDisplay.gameToDisplayCoordinatesX(getX())-sprite.getWidth()/2,
-//                (int) gameDisplay.gameToDisplayCoordinatesY(getY()-sprite.getHeight()/2)
-//        );
-//    }
 }

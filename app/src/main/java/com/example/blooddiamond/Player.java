@@ -31,7 +31,7 @@ public class Player extends Circle{
         if (posX > 1700 && posY < 3000) {
             this.posY = posY+1;
         } else {
-            this.posX = posX + 1;
+            this.posX = posX+1;
         }
     }
 

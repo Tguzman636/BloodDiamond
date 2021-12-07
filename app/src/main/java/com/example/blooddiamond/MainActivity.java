@@ -10,6 +10,7 @@ import android.view.WindowManager;
 public class MainActivity extends AppCompatActivity {
 
     private Game game;
+    private MainActivity context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
-
         game = new Game(this);
         setContentView(game);
     }

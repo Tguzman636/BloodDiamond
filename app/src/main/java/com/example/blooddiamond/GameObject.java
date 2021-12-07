@@ -1,6 +1,7 @@
 package com.example.blooddiamond;
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.util.Log;
 
 public abstract class GameObject {
@@ -32,6 +33,13 @@ public abstract class GameObject {
         return Math.sqrt(
                 Math.pow(enem.getPosX() - play.getPosX(),2) +
                 Math.pow(enem.getPosY() - play.getPosY(),2)
+        );
+    }
+
+    protected static double CalcTapDistance(GameObject enem, Rect tap) {
+        return Math.sqrt(
+                Math.pow(enem.getPosX() - tap.left,2) +
+                Math.pow(enem.getPosY() - tap.top,2)
         );
     }
 
