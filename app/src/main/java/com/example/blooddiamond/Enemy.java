@@ -8,7 +8,7 @@ import com.example.blooddiamond.GameLoop;
 import androidx.core.content.ContextCompat;
 
 public class Enemy extends Circle {
-    public static final double SPEED_PIXELS_PER_SECOND = 80.0;
+    public static double SPEED_PIXELS_PER_SECOND = 80.0;
     private static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / GameLoop.MAX_UPS;
     private static final double SPAWNS_PER_MINUTE = 20;
     private static double SPAWNS_PER_SECOND = SPAWNS_PER_MINUTE/60.0;
@@ -47,7 +47,8 @@ public class Enemy extends Circle {
 
     public static void WaveUp() {
         //Log.d("Bug-Exterminator", "Enemy.java - WaveUp()");
-        wave += 0.1;
+        wave += 1;
+        SPEED_PIXELS_PER_SECOND+=20;
     }
 
     public void update() {

@@ -61,7 +61,7 @@ public class GameLoop extends Thread{ //Thread allows start() to work
             elapsedTime = System.currentTimeMillis() - startTime;
             if (elapsedTime >= 1000) {
                 startTime = System.currentTimeMillis();
-                Enemy.WaveUp();
+                //Enemy.WaveUp();
             }
 
         }

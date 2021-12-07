@@ -37,6 +37,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private int Enable;
     private int Missed;
     private int GameOver;
+    private int Wave;
+    private int WaveTrigger = 10;
 
     public Game(Context context) {
         super(context);
@@ -46,6 +48,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         Enable = 1;
         Missed = 0;
         GameOver = 0;
+        Wave = 0;
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
 
@@ -125,6 +128,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         if(player.getX() >= 3840) {
             gameOver.draw(canvas);
         }
+
+        if (Counter == WaveTrigger) {
+            Enemy.WaveUp();
+            Wave++;
+            WaveTrigger+=WaveTrigger;
+        }
+
         Enable = 0;
         for (Enemy enemy : enemyList) {
             enemy.draw(canvas, gameDisplay);
@@ -140,10 +150,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         paint.setColor(color);
         float textSize = 50;
         paint.setTextSize(textSize);
-        canvas.drawText("Enemies Killed:",x-400,y,paint);
+        canvas.drawText("Enemies Killed:",x-401,y,paint);
         canvas.drawText(String.valueOf(Counter),x,y,paint);
-        canvas.drawText("Missed:",x-230,y+40,paint);
-        canvas.drawText(String.valueOf(Missed),x,y+40,paint);
+        canvas.drawText("Missed:",x-230,y+60,paint);
+        canvas.drawText(String.valueOf(Missed),x,y+60,paint);
+        canvas.drawText("Wave:",x-280,y+120,paint);
+        canvas.drawText(String.valueOf(Wave),x,y+120,paint);
     }
 
     public void update() {
