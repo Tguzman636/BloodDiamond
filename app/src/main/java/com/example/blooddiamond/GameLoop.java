@@ -41,7 +41,7 @@ public class GameLoop extends Thread{ //Thread allows start() to work
                 canvas = surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
                     if (trigger == 1) {
-                        game.update();
+                        game.update(canvas);
                         game.draw(canvas);
                     }
                 };
@@ -69,5 +69,14 @@ public class GameLoop extends Thread{ //Thread allows start() to work
 
     public void removetrigger(int i) {
         this.trigger = i;
+    }
+
+    public void stopLoop() {
+        isRunning = false;
+        try {
+            join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

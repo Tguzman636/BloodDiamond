@@ -38,6 +38,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private int Missed;
     private int GameOver;
     private int Wave;
+    private int End;
     private int WaveTrigger = 10;
 
     public Game(Context context) {
@@ -49,6 +50,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         Missed = 0;
         GameOver = 0;
         Wave = 0;
+        End = 0;
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
 
@@ -101,7 +103,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         //Log.d("Bug-Exterminator", "Game.java - surfaceCreated()");
+        if (gameLoop.getState().equals(Thread.State.TERMINATED)) {
+            SurfaceHolder surfaceHolder = getHolder();
+            surfaceHolder.addCallback(this);
+            gameLoop = new GameLoop(this, surfaceHolder);
+        }
         gameLoop.startLoop();
+        gameOver.InitializeFirebase();
     }
 
     @Override
@@ -118,15 +126,20 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         //Log.d("Bug-Exterminator", "Game.java - draw()");
-
         tilemap.draw(canvas, gameDisplay);
 
         UpdateCounter(canvas);
 
         player.draw(canvas, gameDisplay);
 
-        if(player.getX() >= 3840) {
+        if((player.getX() >= 3838) && (End == 0)) {
+            gameOver.firebase(Counter);
+            End = 1;
+        }
+
+        if(player.getX() >= 3838) {
             gameOver.draw(canvas);
+            return;
         }
 
         if (Counter == WaveTrigger) {
@@ -150,17 +163,18 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         paint.setColor(color);
         float textSize = 50;
         paint.setTextSize(textSize);
-        canvas.drawText("Enemies Killed:",x-401,y,paint);
+        canvas.drawText("Enemies Killed:",x-395,y,paint);
         canvas.drawText(String.valueOf(Counter),x,y,paint);
         canvas.drawText("Missed:",x-230,y+60,paint);
         canvas.drawText(String.valueOf(Missed),x,y+60,paint);
-        canvas.drawText("Wave:",x-280,y+120,paint);
+        canvas.drawText("Wave:",x-185,y+120,paint);
         canvas.drawText(String.valueOf(Wave),x,y+120,paint);
     }
 
-    public void update() {
+    public void update(Canvas canvas) {
         //Log.d("Bug-Exterminator", "Game.java - update()");
-        if(player.getX() >= 3840) {
+        if(player.getX() >= 3838) {
+            gameOver.draw(canvas);
             GameOver = 1;
             return;
         }
@@ -188,4 +202,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
 
 
+    public void pause() {
+        gameLoop.stopLoop();
+    }
 }

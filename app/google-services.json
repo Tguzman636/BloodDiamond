@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "145109495804",
+    "project_id": "blooddiamond-d99d0",
+    "storage_bucket": "blooddiamond-d99d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145109495804:android:f7a361cb2613aaeae6cc79",
+        "android_client_info": {
+          "package_name": "com.example.blooddiamond"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145109495804-949silrgbd8m548k69rp764gva35jj4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArLbzYQaiFVsAJ0KveSy_1VX0VBwVrqR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145109495804-949silrgbd8m548k69rp764gva35jj4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
